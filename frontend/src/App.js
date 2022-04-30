@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 const fileTypes = ["CSV"];
 
 function App() {
+	const [csvArray, setCsvArray] = useState([]);
 	function handleFiles(files) {
 		// Check for the various File API support.
 		if (window.FileReader) {
@@ -47,10 +48,11 @@ function App() {
 			lines.push(tarr);
 		}
 		console.log(lines);
+		setCsvArray(lines);
 	}
 
 	function errorHandler(evt) {
-		if (evt.target.error.name == "NotReadableError") {
+		if (evt.target.error.name === "NotReadableError") {
 			alert("Cannot read file !");
 		}
 	}
@@ -60,16 +62,17 @@ function App() {
 	const [disableUpload, setDisableUpload] = useState(false);
 	const handleChange = (file) => {
 		setFile(file);
+		handleFiles(file);
 	};
 	const [response, setResponse] = useState([]);
 
 	async function handleSubmit(e) {
+		e.preventDefault();
 		setDisableUpload(true);
 		setLoading(true);
-		e.preventDefault();
 
 		axios
-			.post("http://127.0.0.1:8000/post", file)
+			.post("http://127.0.0.1:8000/post", csvArray)
 			.then((response) => setResponse([response?.results]));
 
 		setDisableUpload(false);
@@ -84,7 +87,7 @@ function App() {
 				style={{ height: "100vh", width: "100vw" }}
 			>
 				<div className="corner_logo d-flex">
-					<div style={{ padding: "10px" }}>
+					<div style={{ padding: "5px 10px" }}>
 						<img
 							src={logo}
 							alt=""

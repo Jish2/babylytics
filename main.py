@@ -1,40 +1,32 @@
-'''
-import tensorflow as tf
-from tensorflow import keras
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import random
-'''
-
-
-
-# Synthetic dataset
 from sklearn.datasets import make_classification
-# Data processing
+
 import pandas as pd
 import numpy as np
 from collections import Counter
-# Data visualization
+
 import matplotlib.pyplot as plt
 import seaborn as sns
-# Model and performance
+
 from sklearn.model_selection import train_test_split, cross_validate, StratifiedKFold
 from keras.layers import Dense
 from keras.models import Sequential
 from sklearn.metrics import classification_report, roc_auc_score
 from sklearn.utils import class_weight
 
+from fastapi import FastAPI,Request
+import csv
 
+TRAIN_FILE_NAME = 'fetal_health.csv'
+TEST_FILE_NAME = 'test.csv'
 
-df = pd.read_csv('backend/fetal_health.csv')
+df = pd.read_csv(TRAIN_FILE_NAME)
 np.random.shuffle(df.values)
-X = df.drop('fetal_health', inplace=False, axis=1).values
-y_old = df['fetal_health'].values
+X = df.drop('fetal_health', inplace=False, axis=1).values #np array
+y_old = df['fetal_health'].values #np array
 y = []
 
-EPOCHS = 100
-BATCH_SIZE = 200
+EPOCHS = 10
+BATCH_SIZE = 20
 
 
 output_dist = {}
@@ -74,6 +66,34 @@ nn_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['ac
 nn_model.fit(X_train, y_train, epochs=EPOCHS, batch_size=BATCH_SIZE, class_weight=balanced_weights)
 print('**************')
 val = nn_model.evaluate(X_test, y_test)
-print(nn_model.predict(X_test))
 print('**************')
-print(output_dist)
+
+
+
+
+
+
+app = FastAPI()
+
+
+@app.get("/")
+async def root():
+    return {"message": "hello"}
+
+@app.post("/post/")
+async def post_request(request : Request):
+    test = await pd.read_csv('temp.csv').values
+    pred = await nn_model.predict(test)
+    return pred
+
+
+'''
+f = open('./temp.csv', 'w')
+writer = csv.writer(f)
+
+# write a row to the csv file
+writer.writerow("test")
+
+# close the file
+f.close()
+'''

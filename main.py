@@ -14,7 +14,8 @@ from sklearn.metrics import classification_report, roc_auc_score
 from sklearn.utils import class_weight
 
 from fastapi import FastAPI,Request
-import csv
+# import asyncio
+# import csv
 
 TRAIN_FILE_NAME = 'fetal_health.csv'
 TEST_FILE_NAME = 'test.csv'
@@ -75,15 +76,19 @@ print('**************')
 
 app = FastAPI()
 
-
-@app.get("/")
-async def root():
-    return {"message": "hello"}
+# @app.get("/")
+# async def root():
+#     return {"message": "hello"}
 
 @app.post("/post/")
-async def post_request(request : Request):
-    test = await pd.read_csv('temp.csv').values
-    pred = await nn_model.predict(test)
+def post_request(request : Request):
+    body = request.body()
+    csv_file = open("temp.csv", "w")
+    csv_file. write(body)
+    csv_file. close()
+
+    test = pd.read_csv('temp.csv').values
+    pred = nn_model.predict(test)
     return pred
 
 

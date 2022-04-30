@@ -1,0 +1,25 @@
+.corner_logo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px;
+}
+
+.corner_logo_text {
+	background: linear-gradient(to right, #fc5c7d 0%, #6a82fb 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.submit_button {
+	background: linear-gradient(to right, #fc5c7d 0%, #6a82fb 100%);
+	border: none !important;
+	width: 200px;
+	transition: 1s;
+	font-weight: 300 !important;
+	letter-spacing: 1.1px;
+}
+
+.submit_button:hover {
+	filter: brightness(85%);
+}

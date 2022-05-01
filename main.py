@@ -1,3 +1,4 @@
+import sklearn
 from sklearn.datasets import make_classification
 
 import pandas as pd
@@ -81,8 +82,14 @@ app = FastAPI()
 #     return {"message": "hello"}
 
 @app.post("/post/")
-def post_request(request : Request):
-    body = request.body()
+def post_request(request):
+# def post_request(request : Request):
+    # body = "\n".join(request)
+    body = ""
+    for i in request:
+        for j in i:
+            body+=j
+    # body = request.body()
     csv_file = open("temp.csv", "w")
     csv_file. write(body)
     csv_file. close()

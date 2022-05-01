@@ -3,6 +3,7 @@
 _By Joshua Goon and Rahul Rao_
 
 > 🏆 Hackathon 1st Place Winner 🏆
+> https://devpost.com/software/babylytics
 
 ![poster](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/920/347/datas/original.png)
 [screenshot](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/920/338/datas/original.png)

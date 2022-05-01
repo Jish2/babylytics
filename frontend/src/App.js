@@ -3,14 +3,17 @@ import { FileUploader } from "react-drag-drop-files";
 import { Container, Row, Alert, Form, Button } from "react-bootstrap";
 import LoadingSpin from "react-loading-spin";
 import "./styles/styles.css";
-import logo from "./babylytics.png";
+import logo from "./img/Babylytics Logo.png";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import Data from "./Data";
+
 const fileTypes = ["CSV"];
 
 function App() {
+	const [showData, setShowData] = useState(false);
 	const [csvArray, setCsvArray] = useState([]);
 	function handleFiles(files) {
 		// Check for the various File API support.
@@ -71,12 +74,16 @@ function App() {
 		setDisableUpload(true);
 		setLoading(true);
 
-		axios
-			.post("http://127.0.0.1:8000/post", csvArray)
-			.then((response) => setResponse([response?.results]));
+		setTimeout(() => {
+			setLoading(false);
+			setShowData(true);
+		}, 2000);
+		// axios
+		// 	.post("http://127.0.0.1:8000/post", csvArray)
+		// 	.then((response) => setResponse([response?.results]));
 
-		setDisableUpload(false);
-		setLoading(false);
+		// setDisableUpload(false);
+		// setLoading(false);
 	}
 
 	return (
@@ -104,16 +111,19 @@ function App() {
 					<>
 						<Container style={{ width: "fit-content" }}>
 							<LoadingSpin
-								primaryColor="red"
+								primaryColor="#fc5c7d"
 								animationTimingFunction="linear"
 								size="240px"
 								width="12px"
+								// style={{
+								// 	// color: "linear-gradient(to right, #fc5c7d 0%, #6a82fb 100%)",
+								// }}
 							/>
 						</Container>
 					</>
 				)}
 
-				{!loading && (
+				{!loading && !showData && (
 					<>
 						<Container className="text-center">
 							<Row className="d-inline">
@@ -214,6 +224,11 @@ function App() {
 								</>
 							)}
 						</Container>
+					</>
+				)}
+				{showData && (
+					<>
+						<Data />
 					</>
 				)}
 			</div>

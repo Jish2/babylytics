@@ -4,8 +4,8 @@ _By Joshua Goon and Rahul Rao_
 
 > [🏆 Hackathon 1st Place Winner 🏆](https://devpost.com/software/babylytics)
 
-![poster](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/920/347/datas/original.png)
-[screenshot](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/920/338/datas/original.png)
+![poster](./frontend/src/img/babylytics%20copy.png)
+[screenshot](./frontend/src/img/Babylytics%20Screenshot.png)
 
 <h2 style="text-align:center">What is Babyltics?</h2>
 

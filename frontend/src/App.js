@@ -10,11 +10,16 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Data from "./Data";
 
-const fileTypes = ["CSV"];
+const fileTypes = ["CSV", "TXT"];
 
 function App() {
 	const [showData, setShowData] = useState(false);
 	const [csvArray, setCsvArray] = useState([]);
+
+	const [loading, setLoading] = useState(false);
+	const [file, setFile] = useState(null);
+	const [disableUpload, setDisableUpload] = useState(false);
+
 	function handleFiles(files) {
 		// Check for the various File API support.
 		if (window.FileReader) {
@@ -60,13 +65,29 @@ function App() {
 		}
 	}
 
-	const [loading, setLoading] = useState(false);
-	const [file, setFile] = useState(null);
-	const [disableUpload, setDisableUpload] = useState(false);
-	const handleChange = (file) => {
-		setFile(file);
-		handleFiles(file);
-	};
+	function onChange(event) {
+		setFile(event);
+		var file = event.target.files[0];
+		console.log(file);
+		var reader = new FileReader();
+		reader.readAsText(file);
+		reader.onload = function (event) {
+			// The file's text will be printed here
+			console.log(event.target.result);
+		};
+	}
+
+	function onChangeTest(event) {
+		// var file = event.target.files[0];
+		console.log(file);
+		var reader = new FileReader();
+		reader.readAsText(event[0]);
+		reader.onload = function (event) {
+			// The file's text will be printed here
+			console.log(event.target.result);
+		};
+	}
+
 	const [response, setResponse] = useState([]);
 
 	async function handleSubmit(e) {
@@ -142,7 +163,7 @@ function App() {
 								<Container>
 									<FileUploader
 										multiple={true}
-										handleChange={handleChange}
+										handleChange={onChangeTest}
 										disabled={disableUpload}
 										types={fileTypes}
 										// hoverTitle="Drop Here"
@@ -194,12 +215,16 @@ function App() {
 										}
 									/>
 								</Container>
+								<Container>
+									<input type="file" name="file" onChange={onChange} />
+								</Container>
 							</Row>
 							<Row className="mt-3">
 								<Form onSubmit={handleSubmit}>
 									<Button
 										className="submit_button"
 										type="submit"
+										f
 										size="lg"
 										disabled={disableUpload}
 									>

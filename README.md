@@ -7,29 +7,14 @@ _By Joshua Goon and Rahul Rao_
 ![poster](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/920/347/datas/original.png)
 [screenshot](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/920/338/datas/original.png)
 
-### What it does
+<h2 style="text-align:center">What is Babyltics?</h2>
 
-Babylytics uses Tensorflow trained on data from over 2,000 fetuses to predict the health of a fetus. Simply upload the data to our site where an API call is made, which returns the percent confidence of the health of the fetus.
+Babylytics uses Tensorflow trained on data from over 2,000 fetuses to predict the health of a fetus. Simply upload fetal data to our site our trained model returns the percent confidence of the fetus's health. Babylytics was created with the intent of using a deep-learning approach to support doctors in determining a fetus’ health.
 
-### Inspiration
+<h2 style="text-align:center">Why Babyltics?</h2>
 
-Every year, 21,000 infants die. Our team was inspired by this metric, hoping to prevent infant mortality one step at a time. We were also inspired by the UN’s third goal: Good Health and Well-being.
+In late April of 2022, we attended [HackFTW](https://hackftw.net/). We were prompted to create something that would aim to achieve one of the UN’s goals. After research, we discovered that every year, 21,000 infants die, pointing us toward the UN’s third goal: Good Health and Well-being. Our team was inspired by this metric, hoping to prevent infant mortality one step at a time.
 
-### How we built it
+<h2 style="text-align:center">Built with</h2>
 
-We built the front end in React, and the backend with FastAPI. We used tensorflow for our fetal health prediction.
-
-### Challenges we ran into
-
-We ran into challenges fetching post requests with CSV files. We used interesting methods to parse the data so the backend could interpret it.
-
-### What we learned
-
-Used to Express.js, we were forced to quickly learn FastAPI. We also learned a lot about training data with the SARIMA algorithm.
-
-### Built With
-
-- React.js
-- Bootstrap
-- FastAPI
-- Tensorflow
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white) ![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white) ![Keras](https://img.shields.io/badge/Keras-%23D00000.svg?style=for-the-badge&logo=Keras&logoColor=white) ![Kaggle](https://img.shields.io/badge/Kaggle-035a7d?style=for-the-badge&logo=kaggle&logoColor=white)
